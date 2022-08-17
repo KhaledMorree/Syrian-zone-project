@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "828927382638",
+    "project_id": "syrian-zone",
+    "storage_bucket": "syrian-zone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:828927382638:android:a1bf2a62838099dbe5427f",
+        "android_client_info": {
+          "package_name": "com.khaled.sori"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "828927382638-rsjdeln8rq7gmogek1i8l7nhbmftjo43.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwgAdYQfoJoJOn1bU1yOyL7Mv3brjII-g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "828927382638-rsjdeln8rq7gmogek1i8l7nhbmftjo43.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
