@@ -25,6 +25,7 @@ dependencies:
   cloud_firestore: ^3.3.0
   modal_progress_hud_nsn: ^0.2.1
   url_launcher: ^6.1.5
+  whatsapp_unilink: ^2.0.1+1
   http_auth: ^1.0.1
   flutter_email_sender: ^5.1.0
   string_validator: ^0.3.0
