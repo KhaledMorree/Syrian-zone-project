@@ -101,11 +101,75 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (user != null) {
                           Navigator.pushNamed(context, InputPage.id);
                         }
+
+                      }
+                      on FirebaseAuthException catch(e,s)
+                      {
+                        print(e);
+                        print(s);
+                        if(e.code == 'wrong-password')
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("كلمة مرور خاطئة", style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                        if(e.code == 'user-not-found')
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("المستخدم غير موجود" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                        else if(e.code == "too-many-requests")
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("طلبات كثيرة جدا" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                        else if(e.code == "invalid-email")
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("تم تنسيق البريد الإلكتروني بشكل سيئ" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                      }
+                      catch(e,s)
+                      {
+                        print(e);
+                        print(s);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("الخطأ غير معروف" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                            backgroundColor: Colors.white,
+                          )
+                        );
                         setState((){
                           showSpinner=false;
                         });
-                      } catch (e) {
-                        print(e);
+                        
                       }
                     },
                     minWidth: 200.0,

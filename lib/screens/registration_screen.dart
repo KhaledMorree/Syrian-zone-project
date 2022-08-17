@@ -91,12 +91,60 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           });
                           Navigator.pushNamed(context, InputPage.id);
                         }
-
-                        setState((){
-                          showSpinner =false;
-                        });
-                      } catch (e) {
+                      }on FirebaseAuthException catch(e,s){
                         print(e);
+                        print(s);
+                        if(e.code == 'email-already-in-use')
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("البريد الاليكتروني قيد الاستخدام" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                        else if(e.code == "weak-password")
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("كلمة مرور ضعيفة" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                        else if(e.code == "invalid-email")
+                        {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("تم تنسيق البريد الإلكتروني بشكل سيئ" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                              backgroundColor: Colors.white,
+                            )
+                          );
+                          setState((){
+                            showSpinner=false;
+                          });
+                        }
+                      }
+                      catch(e,s)
+                      {
+                        print(e);
+                        print(s);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("الخطأ غير معروف" , style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                            backgroundColor: Colors.white,
+                          )
+                        );
+                        setState((){
+                          showSpinner=false;
+                        });
+                        
                       }
                     },
                     minWidth: 200.0,

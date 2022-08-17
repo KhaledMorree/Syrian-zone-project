@@ -4,12 +4,12 @@ import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter_paypal/flutter_paypal.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 import 'constants.dart';
 
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 
 class PaymentPage extends StatefulWidget {
   final cost;
@@ -33,28 +33,6 @@ class _PaymentPageState extends State<PaymentPage> {
                   'أختر سيرياتيل او ام تي ان وارسل الرقم مع صورة  تأكيد الدفع من بايبال برسالة وتس أب'),
               content: Text(' يوم سعيد'),
             ));
-  }
-
-  launchWhatsApp1() async {
-    final link = WhatsAppUnilink(
-      phoneNumber: '001-6892782007',
-      text: "مرحبا ممكن تحويل ",
-    );
-    link.toString();
-    // Use either Dart's string interpolation or the toString() method.
-    // The "launch" method is part of "url_launcher".
-    await launch('$link');
-  }
-
-  launchWhatsApp2() async {
-    final link = WhatsAppUnilink(
-      phoneNumber: '001-2134976864',
-      text: "مرحبا ممكن تحويل  ",
-    );
-    link.toString();
-    // Use either Dart's string interpolation or the toString() method.
-    // The "launch" method is part of "url_launcher".
-    await launch('$link');
   }
 
   int Total = 0;
@@ -106,13 +84,19 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              launchWhatsApp1();
+            onPressed: () async{
+                final Email email = Email(
+                    body: "",
+                    recipients:['support@syrianzone.com'],
+                    subject: "رقم سيريتل",
+                    isHTML: true
+                );
+                await FlutterEmailSender.send(email);
             },
             child: Center(
               child: Center(
                 child: Text(
-                  ' أضغط لأرسال رقم سيريتل ',
+                  'أضغط لأرسال رقم سيريتل',
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -129,8 +113,14 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              launchWhatsApp2();
+            onPressed: () async{
+                final Email email = Email(
+                    body: "",
+                    recipients:['support@syrianzone.com'],
+                    subject: "رقم أم تي أن",
+                    isHTML: true
+                );
+                await FlutterEmailSender.send(email);
             },
             child: Text(
               'أضغط لأرسال  رقم أم تي أن',

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
-
 import 'package:sori/screens/constants.dart';
-
-import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Support_screen extends StatefulWidget {
@@ -13,16 +10,6 @@ class Support_screen extends StatefulWidget {
 }
 
 class _Support_screenState extends State<Support_screen> {
-  launchWhatsApp() async {
-    final link = WhatsAppUnilink(
-      phoneNumber: '0047-94288174',
-      text: "مرحبا احتاج مساعدة",
-    );
-    link.toString();
-    // Use either Dart's string interpolation or the toString() method.
-    // The "launch" method is part of "url_launcher".
-    await launch('$link');
-  }
 
   TextEditingController recipientControler = TextEditingController();
   TextEditingController subjectControler = TextEditingController();
@@ -94,40 +81,6 @@ class _Support_screenState extends State<Support_screen> {
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 5,
-            ),
-            Text('للتواصل عن طريق واتساب ',style:TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-              color: Colors.white
-            ),),
-
-            Row(
-
-              mainAxisAlignment: MainAxisAlignment.center,
-
-              children: [
-
-
-
-
-               GestureDetector(
-                onTap: () {
-                  launchWhatsApp();
-                },
-                child: Container(
-                  height: 50,
-                  width: 120,
-                  color: Colors.brown,
-                  child:  Icon(Icons.whatsapp, color: Colors.green,
-                  ),
-
-                ),
-                ),
-
-            ],
             ),
           ],
         ),
